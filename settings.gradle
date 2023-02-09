@@ -1,2 +1,5 @@
 rootProject.name = 'f3-admin-catalago'
+include 'domain'
+include 'application'
+include 'infrastructure'
 

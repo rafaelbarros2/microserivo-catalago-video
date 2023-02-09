@@ -1,4 +1,4 @@
-package com.admin.catalago;
+package com.admin.catalago.domain;
 
 public class Main {
     public static void main(String[] args) {
