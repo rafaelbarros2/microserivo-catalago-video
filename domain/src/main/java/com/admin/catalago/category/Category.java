@@ -1,11 +1,13 @@
 package com.admin.catalago.category;
 
+import com.admin.catalago.AggregateRoot;
+
 import java.time.Instant;
-import java.util.UUID;
 
-public class Category {
 
-    private String id;
+public class Category extends AggregateRoot<CategoryId> {
+
+
     private String name;
     private String description;
     private boolean active;
@@ -13,8 +15,9 @@ public class Category {
     private Instant updatedAt;
     private Instant deletedAt;
 
-    private Category(String id, String name, String description, boolean active, Instant createdAt, Instant updatedAt, Instant deletedAt) {
-        this.id = id;
+    private Category(final CategoryId id, final String name, final String description, final boolean active
+            , final Instant createdAt, final Instant updatedAt, final Instant deletedAt) {
+        super(id);
         this.name = name;
         this.description = description;
         this.active = active;
@@ -24,16 +27,12 @@ public class Category {
     }
 
     public static Category newCategory(final String aName, final String aDescription, final boolean aActive){
-        final var id = UUID.randomUUID().toString();
+        final var id = CategoryId.unique();
         return new Category(id, aName, aDescription, aActive, Instant.now() , Instant.now(),null);
     }
 
-    public String getId() {
+    public CategoryId getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
