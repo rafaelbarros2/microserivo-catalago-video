@@ -1,6 +1,7 @@
 package com.admin.catalago.category;
 
 import com.admin.catalago.AggregateRoot;
+import com.admin.catalago.validation.ValidateHandler;
 
 import java.time.Instant;
 
@@ -29,6 +30,11 @@ public class Category extends AggregateRoot<CategoryId> {
     public static Category newCategory(final String aName, final String aDescription, final boolean aActive){
         final var id = CategoryId.unique();
         return new Category(id, aName, aDescription, aActive, Instant.now() , Instant.now(),null);
+    }
+
+    @Override
+    public void validate(final ValidateHandler handler) {
+        new CategoryValidator(this, handler).validate();
     }
 
     public CategoryId getId() {
@@ -82,4 +88,6 @@ public class Category extends AggregateRoot<CategoryId> {
     public void setDeletedAt(Instant deletedAt) {
         this.deletedAt = deletedAt;
     }
+
+
 }
