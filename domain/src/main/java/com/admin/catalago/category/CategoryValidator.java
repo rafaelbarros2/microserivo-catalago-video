@@ -6,6 +6,8 @@ import com.admin.catalago.validation.Validator;
 
 public class CategoryValidator extends Validator{
 
+    public static final int NAME_MAX_LENGHT = 355;
+    public static final int NAME_MIN_LENGHT = 3;
     private final Category category;
 
     public CategoryValidator(final Category accategory, ValidateHandler handler) {
@@ -31,7 +33,7 @@ public class CategoryValidator extends Validator{
         }
 
         final var lenght =  name.trim().length();
-        if(lenght > 355 || lenght < 3 ){
+        if(lenght > NAME_MAX_LENGHT || lenght < NAME_MIN_LENGHT){
             this.validateHandler().append(new Error("'name' must between 3 and 255 characters"));
 
         }
